@@ -40,3 +40,7 @@
 .star-icon {
   cursor: pointer;
 }
+
+.delete-btn {
+  max-height: 40px;
+}

@@ -18,21 +18,27 @@ export default function Favourites() {
         <Col sm={12}>
           <ul style={{ listStyle: "none" }}>
             {favourites.map((company, i) => (
-              <div key={i} className="my-4 d-flex">
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    dispatch({
-                      type: "REMOVE_FROM_FAVOURITES",
-                      payload: i
-                    })
-                  }}
-                >
-                  <FaTrash />
-                </Button>
-                <div>
-                  <h3 className="ml-2">{company.company_name}</h3>
-                  {/* <p>{company.description}</p> */}
+              <div
+                key={i}
+                className="my-4 d-flex align-items-center justify-content-between border p-2 m-5"
+              >
+                <div className="ml-2">
+                  <h3>{company.company_name}</h3>
+                  <p>{company.description.split("is")[1].split(".")[0]}.</p>
+                </div>
+                <div className="mr-2">
+                  <Button
+                    className="delete-btn"
+                    variant="danger"
+                    onClick={() => {
+                      dispatch({
+                        type: "REMOVE_FROM_FAVOURITES",
+                        payload: i
+                      })
+                    }}
+                  >
+                    <FaTrash />
+                  </Button>
                 </div>
               </div>
             ))}
@@ -42,3 +48,5 @@ export default function Favourites() {
     </>
   )
 }
+
+// <p>Etsy
