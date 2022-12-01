@@ -15,14 +15,16 @@ const mainReducer = (state = initialState, action) => {
           content: [...state.favourites.content, action.payload]
         }
       }
-    //   case "REMOVE_FROM_FAVOURITES":
-    //     return {
-    //       ...state,
-    //       cart: {
-    //         ...state.cart,
-    //         content: state.cart.content.filter((book, i) => i !== action.payload)
-    //       }
-    //     }
+    case "REMOVE_FROM_FAVOURITES":
+      return {
+        ...state,
+        favourites: {
+          ...state.favourites,
+          content: state.favourites.content.filter(
+            (company, i) => i !== action.payload
+          )
+        }
+      }
 
     default:
       return state
