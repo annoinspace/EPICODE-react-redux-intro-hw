@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import { Container, Row, Col, Form } from 'react-bootstrap'
-import Job from './Job'
+import { useState } from "react"
+import { Container, Row, Col, Form } from "react-bootstrap"
+import Job from "./Job"
+
+import FavouritesIndicator from "./FavouritesIndicator"
 
 const MainSearch = () => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("")
   const [jobs, setJobs] = useState([])
 
-  const baseEndpoint = 'https://strive-jobs-api.herokuapp.com/jobs?search='
+  const baseEndpoint = "https://strive-jobs-api.herokuapp.com/jobs?search="
 
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -16,12 +18,12 @@ const MainSearch = () => {
     e.preventDefault()
 
     try {
-      const response = await fetch(baseEndpoint + query + '&limit=20')
+      const response = await fetch(baseEndpoint + query + "&limit=20")
       if (response.ok) {
         const { data } = await response.json()
         setJobs(data)
       } else {
-        alert('Error fetching results')
+        alert("Error fetching results")
       }
     } catch (error) {
       console.log(error)
@@ -31,8 +33,12 @@ const MainSearch = () => {
   return (
     <Container>
       <Row>
-        <Col xs={10} className="mx-auto my-3">
+        <Col
+          xs={10}
+          className="mx-auto my-3 d-flex justify-content-between align-items-center"
+        >
           <h1>Remote Jobs Search</h1>
+          <FavouritesIndicator />
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
