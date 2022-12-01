@@ -1,26 +1,29 @@
-import { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import Job from './Job'
-import { useParams } from 'react-router-dom'
+import { useState } from "react"
+import { Container, Row, Col, Form } from "react-bootstrap"
+import Job from "./Job"
+// import { useParams } from "react-router-dom"
 
 const CompanySearchResults = () => {
-  const [jobs, setJobs] = useState([])
-  const params = useParams()
+  const [query, setQuery] = useState("")
+  const [company, setCompany] = useState([])
+  // const params = useParams()
 
-  const baseEndpoint = 'https://strive-jobs-api.herokuapp.com/jobs?company='
+  const baseEndpoint = "https://strive-jobs-api.herokuapp.com/jobs?company="
 
-  useEffect(() => {
-    getJobs()
-  }, [])
+  const handleChange = (e) => {
+    setQuery(e.target.value)
+  }
 
-  const getJobs = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
     try {
-      const response = await fetch(baseEndpoint + params.companyName)
+      const response = await fetch(baseEndpoint + query)
       if (response.ok) {
         const { data } = await response.json()
-        setJobs(data)
+        setCompany(data)
       } else {
-        alert('Error fetching results')
+        alert("Error fetching results")
       }
     } catch (error) {
       console.log(error)
@@ -30,9 +33,25 @@ const CompanySearchResults = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
+        <Col
+          xs={10}
+          className="mx-auto my-3 d-flex justify-content-between align-items-center"
+        >
+          <h1>Company Search</h1>
+        </Col>
+        <Col xs={10} className="mx-auto">
+          <Form onSubmit={handleSubmit}>
+            <Form.Control
+              type="search"
+              value={query}
+              onChange={handleChange}
+              placeholder="type and press Enter"
+            />
+          </Form>
+        </Col>
+        <Col xs={10} className="mx-auto mb-5">
+          {company.map((companyData) => (
+            <Job key={companyData._id} data={companyData} />
           ))}
         </Col>
       </Row>
