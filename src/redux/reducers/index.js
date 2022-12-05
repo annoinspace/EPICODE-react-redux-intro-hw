@@ -1,3 +1,5 @@
+import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from "../actions"
+
 const initialState = {
   favourites: {
     content: [] // the books will be put here
@@ -13,7 +15,7 @@ const mainReducer = (state = initialState, action) => {
 
   switch (action.type) {
     //multiple cases will happen here, but we'll start with the default
-    case "ADD_TO_FAVOURITES":
+    case ADD_TO_FAVOURITES:
       return {
         ...state,
         favourites: {
@@ -21,7 +23,7 @@ const mainReducer = (state = initialState, action) => {
           content: [...state.favourites.content, action.payload]
         }
       }
-    case "REMOVE_FROM_FAVOURITES":
+    case REMOVE_FROM_FAVOURITES:
       return {
         ...state,
         favourites: {
