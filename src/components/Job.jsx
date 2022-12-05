@@ -2,6 +2,7 @@ import { Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { BsFillStarFill } from "react-icons/bs"
 import { useDispatch } from "react-redux"
+import { addToFavouritesAction } from "../redux/actions"
 
 const Job = ({ data }) => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const Job = ({ data }) => {
           variant="primary"
           className="star-icon d-flex justify-content-center"
           onClick={() => {
-            dispatch({ type: "ADD_TO_FAVOURITES", payload: data })
+            dispatch(addToFavouritesAction(data))
           }}
         >
           <BsFillStarFill />
