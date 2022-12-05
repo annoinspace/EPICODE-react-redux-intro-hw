@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Button, Row, Col } from "react-bootstrap"
 import { FaTrash } from "react-icons/fa"
+import { removeFromFavouritesAction } from "../redux/actions"
 
 export default function Favourites() {
   const favourites = useSelector((state) => state.favourites.content)
@@ -25,16 +26,14 @@ export default function Favourites() {
                 <div className="ml-2">
                   <h3>{company.company_name}</h3>
                   <p>{company.description.split("is")[1].split(".")[0]}.</p>
+                  {/* <div dangerouslySetInnerHTML={company.description} /> */}
                 </div>
                 <div className="mr-2">
                   <Button
                     className="delete-btn"
                     variant="danger"
                     onClick={() => {
-                      dispatch({
-                        type: "REMOVE_FROM_FAVOURITES",
-                        payload: i
-                      })
+                      dispatch(removeFromFavouritesAction(i))
                     }}
                   >
                     <FaTrash />
