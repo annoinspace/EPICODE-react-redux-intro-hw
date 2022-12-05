@@ -2,10 +2,9 @@ import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import FavouritesIndicator from "./FavouritesIndicator"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function MainNavbar() {
-  const location = useLocation()
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>

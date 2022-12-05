@@ -6,7 +6,7 @@ const MainSearch = () => {
   const [query, setQuery] = useState("")
   const [jobs, setJobs] = useState([])
 
-  const baseEndpoint = "https://strive-jobs-api.herokuapp.com/jobs?search="
+  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search="
 
   const handleChange = (e) => {
     setQuery(e.target.value)

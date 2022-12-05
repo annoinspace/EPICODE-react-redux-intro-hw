@@ -5,6 +5,12 @@ const initialState = {
 }
 
 const mainReducer = (state = initialState, action) => {
+  if (
+    action.type === "ADD_TO_FAVOURITES" &&
+    state.favourites.content.includes(action.payload)
+  )
+    return state
+
   switch (action.type) {
     //multiple cases will happen here, but we'll start with the default
     case "ADD_TO_FAVOURITES":

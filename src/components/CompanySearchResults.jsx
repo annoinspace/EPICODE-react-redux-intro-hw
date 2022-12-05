@@ -8,7 +8,8 @@ const CompanySearchResults = () => {
   const [company, setCompany] = useState([])
   // const params = useParams()
 
-  const baseEndpoint = "https://strive-jobs-api.herokuapp.com/jobs?company="
+  const baseEndpoint =
+    "https://strive-benchmark.herokuapp.com/api/jobs?company="
 
   const handleChange = (e) => {
     setQuery(e.target.value)
