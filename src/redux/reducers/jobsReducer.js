@@ -1,7 +1,7 @@
 import { GET_JOBS } from "../actions"
 
 const initialState = {
-  jobList: []
+  jobOptionsFromFetchArray: []
 }
 
 const jobsReducer = (state = initialState, action) => {
@@ -9,7 +9,8 @@ const jobsReducer = (state = initialState, action) => {
     case GET_JOBS:
       return {
         ...state,
-        jobList: action.payload
+        jobOptionsFromFetchArray: action.payload
+        // jobList: [...state.content, ...action.payload]
       }
     default:
       return state

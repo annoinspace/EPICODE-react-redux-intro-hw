@@ -8,8 +8,7 @@ const MainSearch = () => {
   const [query, setQuery] = useState("")
   // const [jobs, setJobs] = useState([])
   const dispatch = useDispatch()
-  // const jobsFromRedux = useSelector((state) => state.jobs.jobList)
-  //const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search="
+  let jobs = useSelector((state) => state.jobs.jobOptionsFromFetchArray)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -40,9 +39,9 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
-          {/* {jobsFromRedux.map((jobData) => (
+          {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
-          ))} */}
+          ))}
         </Col>
       </Row>
     </Container>

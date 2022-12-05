@@ -12,7 +12,7 @@ export const removeFromFavouritesAction = (i) => {
   }
 }
 
-export const getJobsAction = (query, jobList) => {
+export const getJobsAction = (query) => {
   return async (dispatch, getState) => {
     console.log("Fetching results from the API")
     let baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search="
@@ -21,11 +21,12 @@ export const getJobsAction = (query, jobList) => {
       if (resp.ok) {
         let data = await resp.json()
         console.log(data)
-        const jobList = data
+        const jobListFromFetch = data.data
+        console.log("---data.data---", jobListFromFetch)
 
         dispatch({
           type: GET_JOBS,
-          payload: jobList
+          payload: jobListFromFetch
         })
       } else {
         console.log("error")
