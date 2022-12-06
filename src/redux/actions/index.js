@@ -21,6 +21,10 @@ export const getJobsAction = (query) => {
       type: GET_JOBS_LOADING,
       payload: true
     })
+    dispatch({
+      type: GET_JOBS_ERROR,
+      payload: false
+    })
     console.log("Fetching results from the API")
     let baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search="
     try {

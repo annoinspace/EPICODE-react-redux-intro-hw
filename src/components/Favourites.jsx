@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button, Row, Col } from "react-bootstrap"
 import { FaTrash } from "react-icons/fa"
 import { removeFromFavouritesAction } from "../redux/actions"
+import DangerousHTML from "./DangerousHTML"
 
 export default function Favourites() {
   const favourites = useSelector((state) => state.favourites.content)
@@ -24,20 +25,21 @@ export default function Favourites() {
                 className="my-4 d-flex align-items-center justify-content-between border p-2 m-5"
               >
                 <div className="ml-2">
-                  <h3>{company.company_name}</h3>
-                  <p>{company.description.split("is")[1].split(".")[0]}.</p>
-                  {/* <div dangerouslySetInnerHTML={company.description} /> */}
-                </div>
-                <div className="mr-2">
-                  <Button
-                    className="delete-btn"
-                    variant="danger"
-                    onClick={() => {
-                      dispatch(removeFromFavouritesAction(i))
-                    }}
-                  >
-                    <FaTrash />
-                  </Button>
+                  <div className="d-flex align-items-center justify-content-between">
+                    <h3 className="display-4 ">{company.company_name}</h3>
+                    <div className="ml-3">
+                      <Button
+                        className="delete-btn"
+                        variant="danger"
+                        onClick={() => {
+                          dispatch(removeFromFavouritesAction(i))
+                        }}
+                      >
+                        <FaTrash />
+                      </Button>
+                    </div>
+                  </div>
+                  <DangerousHTML description={company.description} />
                 </div>
               </div>
             ))}
