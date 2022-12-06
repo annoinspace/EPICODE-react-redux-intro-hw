@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Row, Col, Form } from "react-bootstrap"
+import { Container, Row, Col, Form, Spinner } from "react-bootstrap"
 import Job from "./Job"
 import { getJobsAction } from "../redux/actions"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,6 +9,7 @@ const MainSearch = () => {
   // const [jobs, setJobs] = useState([])
   const dispatch = useDispatch()
   let jobs = useSelector((state) => state.jobs.jobOptionsFromFetchArray)
+  const areJobsLoading = useSelector((state) => state.jobs.isLoading)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -38,6 +39,12 @@ const MainSearch = () => {
             />
           </Form>
         </Col>
+        {areJobsLoading && (
+          <Col>
+            {" "}
+            <Spinner animation="border" variant="info" />
+          </Col>
+        )}
         <Col xs={10} className="mx-auto mb-5">
           {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />

@@ -1,7 +1,8 @@
-import { GET_JOBS } from "../actions"
+import { GET_JOBS, GET_JOBS_LOADING } from "../actions"
 
 const initialState = {
-  jobOptionsFromFetchArray: []
+  jobOptionsFromFetchArray: [],
+  isLoading: false
 }
 
 const jobsReducer = (state = initialState, action) => {
@@ -10,8 +11,13 @@ const jobsReducer = (state = initialState, action) => {
       return {
         ...state,
         jobOptionsFromFetchArray: action.payload
-        // jobList: [...state.content, ...action.payload]
       }
+    case GET_JOBS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload
+      }
+
     default:
       return state
   }
