@@ -2,6 +2,7 @@ export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES"
 export const REMOVE_FROM_FAVOURITES = "REMOVE_FROM_FAVOURITES"
 export const GET_JOBS = "GET_JOBS"
 export const GET_JOBS_LOADING = "GET_JOBS_LOADING"
+export const GET_JOBS_ERROR = "GET_JOBS_ERROR"
 
 export const addToFavouritesAction = (data) => {
   return { type: "ADD_TO_FAVOURITES", payload: data }
@@ -41,9 +42,17 @@ export const getJobsAction = (query) => {
         })
       } else {
         console.log("error")
+        dispatch({
+          type: GET_JOBS_ERROR,
+          payload: true
+        })
       }
     } catch (error) {
       console.log(error)
+      dispatch({
+        type: GET_JOBS_ERROR,
+        payload: true
+      })
     }
   }
 }

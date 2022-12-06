@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Row, Col, Form, Spinner } from "react-bootstrap"
+import { Container, Row, Col, Form, Spinner, Alert } from "react-bootstrap"
 import Job from "./Job"
 import { getJobsAction } from "../redux/actions"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,6 +10,7 @@ const MainSearch = () => {
   const dispatch = useDispatch()
   let jobs = useSelector((state) => state.jobs.jobOptionsFromFetchArray)
   const areJobsLoading = useSelector((state) => state.jobs.isLoading)
+  const errorWithFetch = useSelector((state) => state.jobs.isError)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -45,11 +46,20 @@ const MainSearch = () => {
             <Spinner animation="border" variant="info" />
           </Col>
         )}
-        <Col xs={10} className="mx-auto mb-5">
-          {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
-        </Col>
+        {errorWithFetch ? (
+          <Col>
+            <div class="alert alert-danger" role="alert">
+              {" "}
+              Something went wrong :S
+            </div>
+          </Col>
+        ) : (
+          <Col xs={10} className="mx-auto mb-5">
+            {jobs.map((jobData) => (
+              <Job key={jobData._id} data={jobData} />
+            ))}
+          </Col>
+        )}
       </Row>
     </Container>
   )
